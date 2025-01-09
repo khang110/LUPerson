@@ -1,0 +1,16 @@
+Part 4
+Start Line: 16708
+End Line: 22276
+Total countries: 7
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+israel              299       16708       17006       
+italy               920       17007       17926       
+japan               1737      17927       19663       
+malaysia            557       19664       20220       
+mexico              495       20221       20715       
+netherlands         1382      20716       22097       
+norway              179       22098       22276       

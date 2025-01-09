@@ -11,6 +11,38 @@ import argparse
 from tqdm import tqdm
 
 
+# def extract_one_video_frames(vid_path, det_dir, save_root):
+#     vname = os.path.basename(vid_path)
+#     country, city, _ = vname.split('+')
+#     save_dir = os.path.join(save_root, country, city)
+#     if not os.path.exists(save_dir):
+#         os.makedirs(save_dir)
+#     det_file = os.path.join(det_dir, vname.replace('.mp4', '.pkl'))
+#     if not os.path.isfile(det_file):
+#         print(f'****** [Attention] detection file: {det_file} does not exist, skiped !!')
+#         return
+#     with open(det_file, 'rb') as f:
+#         dets = pickle.load(f)
+#     cap = cv2.VideoCapture(vid_path)
+#     nfs = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+#     W = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+#     H = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+
+#     frame_ids = sorted(dets.keys())
+#     for frame_id in frame_ids:
+#         cap.set(cv2.CAP_PROP_POS_FRAMES, frame_id - 1)
+#         ret, image = cap.read()
+#         if not ret:
+#             print(f'****** [Attention] video: {vid_path} corrupt at frame: {frame_id - 1} !!')
+#         for det in dets[frame_id]:
+#             obj_idx_at_ori_image = det[0]
+#             bbox = det[1]['bbox'].round().astype(int)
+#             img = image[bbox[1]:bbox[3], bbox[0]:bbox[2], :]
+#             img_name = f'{frame_id:08d}_{obj_idx_at_ori_image:04d}.jpg'
+#             img_path = os.path.join(save_dir, img_name)
+#             if not os.path.exists(img_path):
+#                 cv2.imwrite(img_path, img)
+
 def extract_one_video_frames(vid_path, det_dir, save_root):
     vname = os.path.basename(vid_path)
     country, city, _ = vname.split('+')
@@ -19,7 +51,7 @@ def extract_one_video_frames(vid_path, det_dir, save_root):
         os.makedirs(save_dir)
     det_file = os.path.join(det_dir, vname.replace('.mp4', '.pkl'))
     if not os.path.isfile(det_file):
-        print(f'****** [Attention] detection file: {det_file} does not exist, skiped !!')
+        print(f'****** [Attention] detection file: {det_file} does not exist, skipped !!')
         return
     with open(det_file, 'rb') as f:
         dets = pickle.load(f)
@@ -32,16 +64,24 @@ def extract_one_video_frames(vid_path, det_dir, save_root):
     for frame_id in frame_ids:
         cap.set(cv2.CAP_PROP_POS_FRAMES, frame_id - 1)
         ret, image = cap.read()
-        if not ret:
+        if not ret or image is None:
             print(f'****** [Attention] video: {vid_path} corrupt at frame: {frame_id - 1} !!')
+            continue  # Skip this frame
+
         for det in dets[frame_id]:
             obj_idx_at_ori_image = det[0]
-            bbox = det[1]['bbox'].round().astype(np.int)
-            img = image[bbox[1]:bbox[3], bbox[0]:bbox[2], :]
-            img_name = f'{frame_id:08d}_{obj_idx_at_ori_image:04d}.jpg'
-            img_path = os.path.join(save_dir, img_name)
-            if not os.path.exists(img_path):
-                cv2.imwrite(img_path, img)
+            bbox = det[1]['bbox'].round().astype(int)
+            if bbox[1] >= bbox[3] or bbox[0] >= bbox[2]:
+                print(f'****** [Attention] Invalid bbox: {bbox} at frame {frame_id}')
+                continue  # Skip invalid bounding boxes
+            try:
+                img = image[bbox[1]:bbox[3], bbox[0]:bbox[2], :]
+                img_name = f'{frame_id:08d}_{obj_idx_at_ori_image:04d}.jpg'
+                img_path = os.path.join(save_dir, img_name)
+                if not os.path.exists(img_path):
+                    cv2.imwrite(img_path, img)
+            except Exception as e:
+                print(f'****** [Error] Failed to save image: {e}')
 
 
 def get_all_videos(vid_dir):

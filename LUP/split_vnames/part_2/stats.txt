@@ -1,0 +1,16 @@
+Part 2
+Start Line: 5570
+End Line: 11138
+Total countries: 7
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+canada              294       5570        5863        
+china               2843      5864        8706        
+czech_republic      571       8707        9277        
+denmark             482       9278        9759        
+finland             517       9760        10276       
+france              655       10277       10931       
+germany             207       10932       11138       

@@ -130,4 +130,10 @@ dmypy.json
 
 logs
 snapshots
-
+LUP/dets
+LUP/lup_lmdb
+LUP/videos
+LUP/luperson
+LUP/dets.zip
+LUP/dets
+LUP/keys.pkl

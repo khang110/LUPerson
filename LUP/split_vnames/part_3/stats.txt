@@ -1,0 +1,15 @@
+Part 3
+Start Line: 11139
+End Line: 16707
+Total countries: 6
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+germany             3045      11139       14183       
+greece              571       14184       14754       
+hungary             501       14755       15255       
+india               608       15256       15863       
+ireland             531       15864       16394       
+israel              313       16395       16707       

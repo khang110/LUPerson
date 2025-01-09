@@ -1,0 +1,15 @@
+Part 1
+Start Line: 1
+End Line: 5569
+Total countries: 6
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+argentina           590       1           590         
+australia           1512      591         2102        
+austria             553       2103        2655        
+belgium_brussels    583       2656        3238        
+brazil              474       3239        3712        
+canada              1857      3713        5569        

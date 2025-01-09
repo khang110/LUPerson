@@ -1,0 +1,10 @@
+Part 7
+Start Line: 33415
+End Line: 38983
+Total countries: 1
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+us                  5569      33415       38983       

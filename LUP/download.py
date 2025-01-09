@@ -23,7 +23,7 @@ def download_one_video(vid, save_dir, save_name=None):
 def parse_args():
     """ Parse input arguments """
     parser = argparse.ArgumentParser(description='download luperson raw videos')
-    parser.add_argument('-f',  '--vid_name_file',  type=str,  default='vname.txt')
+    parser.add_argument('-f',  '--vid_name_file',  type=str,  default='vnames.txt')
     parser.add_argument('-s',  '--save_dir',       type=str,  default='videos')
     args = parser.parse_args()
     return args
@@ -38,7 +38,7 @@ if __name__ == '__main__':
         lines = [line.strip() for line in lines]
     for item in tqdm(lines):
         country, city, vid = item.split('+')
-        save_dir = os.path.join(save_root, country, city)
+        save_dir = os.path.join(args.save_dir, country, city)
         if not os.path.exists(save_dir):
             os.makedirs(save_dir)
         download_one_video(vid, save_dir, save_name=item)

@@ -1,0 +1,14 @@
+Part 6
+Start Line: 27846
+End Line: 33414
+Total countries: 5
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+thailand            114       27846       27959       
+turkey              594       27960       28553       
+uk                  995       28554       29548       
+united_arab_emirates893       29549       30441       
+us                  2973      30442       33414       

@@ -1,0 +1,19 @@
+Part 5
+Start Line: 22277
+End Line: 27845
+Total countries: 10
+Total IDs in Part: 5569
+Total IDs in Original File: 44550
+
+Country             Total IDs Start Line  End Line    
+------------------------------------------------------
+norway              14        22277       22290       
+portugal            549       22291       22839       
+russia              483       22840       23322       
+singapore           528       23323       23850       
+south_korea         1080      23851       24930       
+spain               851       24931       25781       
+sweden              523       25782       26304       
+switzerland         409       26305       26713       
+taiwan              587       26714       27300       
+thailand            545       27301       27845       
